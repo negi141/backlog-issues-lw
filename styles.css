@@ -1,0 +1,105 @@
+body {
+    font-family: helvetica, arial, 'lucida grande', 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif;
+    line-height: 26px;
+    width: 700px;
+    margin: 0px auto;
+}
+
+h1 {
+    color: #555;
+    border-bottom: 2px solid #cdf;
+    font-size: 24px;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    padding-top: 8px;
+}
+
+h2 {
+    color: #555;
+    border-bottom: 1px solid #cdf;
+    font-size: 20px;
+    margin-bottom: 6px;
+    padding-bottom: 3px;
+    padding-top: 8px;
+}
+
+h3, h4, h5, h6 {
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    padding-top: 8px;
+}
+
+code {
+    background: #f0f9ff;
+    border: 1px solid #e0e9ff;
+    white-space: pre;
+    padding: 5px;
+    color: #036;
+}
+
+pre {
+    background: #f0f9ff;
+    border: 1px solid #e0e9ff;
+    white-space: pre;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+pre code {
+    border: 0px solid #e0e9ff;
+    padding: 0px;
+}
+
+blockquote {
+    padding: 0px 10px;
+    color: #789;
+    border-left: 4px solid #dde;
+    font-size: 80%;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th {
+    border: solid 1px #ccc;
+    background: #f0f9ff;
+    color: #666;
+}
+
+td {
+    border: solid 1px #ddd;
+}
+
+th, td {
+    padding: 4px;
+}
+
+.note {
+    background: #f0f9ff;
+    border: 1px solid #e0e9ff;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+footer {
+    text-align: center;
+}
+
+form {
+    padding: 10px;
+}
+
+/*             */
+li > a {
+    color: #111;
+    text-decoration: none;
+}
+
+li > a:hover {
+    color: #14c;
+    text-decoration: underline;
+}
