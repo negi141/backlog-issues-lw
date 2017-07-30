@@ -7,7 +7,7 @@ foreach ($issues as $lwverKey => $lwver) {
         $date = new DateTime($daysKey);
         $now = new DateTime();
         if ($now < $date) {
-            $interval = $date->diff($now);
+            $interval = $date->diff($now) + 1;
             $dateMessage = "　" . $interval->d . "日後";
         } else {
             $dateMessage = "　過去";
