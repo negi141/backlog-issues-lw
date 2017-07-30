@@ -93,6 +93,14 @@ form {
     padding: 10px;
 }
 
+a {
+    color: #337ab7;
+    text-decoration: none;
+}
+a:hover {
+    color: #23527c;
+    text-decoration: underline;
+}
 /*             */
 li > a {
     color: #111;
