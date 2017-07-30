@@ -50,7 +50,7 @@ function getIssues($apiKey, $span)
 
 function render($pageName, $params = [])
 {
-    $html = Render::layout("header", ["title" => "LW Release - backlog API"]);
+    $html = Render::layout("header", ["title" => "backlog Checker for LearningWare"]);
     try {
         $html .= Render::view($pageName, $params);
     } catch (\Exception $e) {
