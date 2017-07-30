@@ -1,6 +1,6 @@
 <div class="note">
-    backlog APIを叩いて、LWの課題を抽出して、LWのバージョンxリリース日毎に分類するよ<br/>
-    LW主管の閲覧権限がないと利用できないよ<br/>
+    backlogの課題をAPIで取得して、LearningWareのバージョンとリリース日毎に分類する<br/>
+    LW主管の閲覧権限がないと利用できません<br/>
     1. API Keyを<a href="http://www.backlog.jp/help/usersguide/personal-settings/userguide2378.html" target="_blank">backlogで取得する</a><br/>
     2. 以下に、自分のAPI Keyを貼りつけて、Enter!<br/>
 </div>
