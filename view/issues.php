@@ -5,14 +5,15 @@ foreach ($issues as $lwverKey => $lwver) {
     $html .= Html::tag('h2', $lwverKey);
     foreach ($lwver as $daysKey => $days) {
         $date = new DateTime($daysKey);
+        $date->add(new DateInterval('P1D'));
         $now = new DateTime();
+        $interval = $date->diff($now);
         if ($now < $date) {
-            $interval = $date->diff($now) + 1;
-            $dateMessage = "　" . $interval->d . "日後";
+            $dateMessage = $interval->d . "日後";
         } else {
-            $dateMessage = "　過去";
+            $dateMessage = $interval->d . "日前";
         }
-        $html .= Html::tag('h3', substr($daysKey, 0, 10) . $dateMessage);
+        $html .= Html::tag('h3', substr($daysKey, 0, 10) . "　" . $dateMessage);
         foreach ($days as $issue) {
             $url = sprintf(BacklogApi::WEB_URL, 'esk-sys', $issue['issueKey']);
             $summary = preg_replace("/\[.+\]/", "", $issue['summary']);
