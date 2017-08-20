@@ -112,7 +112,7 @@ function sendMail($mailBody) {
     $apiKey = getenv('SENDGRID_API_KEY');
     $sg = new \SendGrid($apiKey);
 
-    $response = $sg->send($email);
+    $response = $sg->client->mail()->send()->post($mail);
 
     echo $response->statusCode();
     echo $response->body();
