@@ -12,9 +12,9 @@ try {
 $to      = getenv('MAIL_TO');
 $subject = 'タイトル';
 $message = '本文';
-$headers = 'From: ' . 'tnegishi@pro-seeds.co.jp' . "\r\n";
+//$headers = 'From: ' . 'tnegishi@pro-seeds.co.jp' . "\r\n";
 
-mb_send_mail($to, $subject, $message, $headers);
+mb_send_mail($to, $subject, $message/*, $headers*/);
 
 } catch (\Exception $ex) {
     Util::vardump($ex);
