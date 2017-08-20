@@ -1,6 +1,7 @@
 <?php
 require_once "lib/init.php";
 require_once "lib/util.php";
+require_once "lib/html.php";
 require_once "lib/backlog.php";
 
 require __DIR__ . '/vendor/autoload.php'; // path to vendor/
