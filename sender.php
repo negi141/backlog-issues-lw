@@ -3,51 +3,17 @@ require_once "lib/init.php";
 require_once "lib/util.php";
 require_once "lib/html.php";
 require_once "lib/backlog.php";
+require_once "lib/backlogCall.php";
 
-require __DIR__ . '/vendor/autoload.php'; // path to vendor/
+require __DIR__ . '/vendor/autoload.php';
 
 main();
 
-function main(){
+function main() {
     $span = (object)["start" => strtotime("-10 day"), "end" => strtotime("+20 day")];
-    $issues = getIssues(getenv("BACKLOG_API_KEY"), $span);
+    $issues = backlogCall::getIssues(getenv("BACKLOG_API_KEY"), $span);
     $content = formatIssues($issues);
     sendMail($content);
-}
-
-function getIssues($apiKey, $span)
-{
-    $backlogApi = new BacklogApi($apiKey, 'esk-sys');
-    $query = [
-        'dueDateSince' => date("Y-m-d", $span->start),
-        'dueDateUntil' => date("Y-m-d", $span->end),
-        'count' => 100,
-        'statusId' => [1, 2, 3],
-        'categoryId' => [213143, 197771],
-        'versionId' => [121542, 121543, 121544],
-        'sort' => 'dueDate',
-        'order' => 'asc',
-    ];
-    $issues = $backlogApi->send("issues", $query);
-    $lwvers = ['LW1', 'LW2', 'LW3'];
-    $formattedIssues = [];
-    foreach ($issues as $issue) {
-        foreach ($lwvers as $lwver) {
-
-            if (!isset($formattedIssues[$lwver])) {
-                $formattedIssues[$lwver] = [];
-            }
-
-            if (preg_match("/" . $lwver . "/", $issue['summary'])) {
-                $dueDate = $issue['dueDate'];
-                if (isset($dueDate)) {
-                    $formattedIssues[$lwver][$dueDate][] = $issue;
-                }
-            }
-        }
-    }
-
-    return $formattedIssues;
 }
 
 function formatIssues($issues) {
@@ -106,15 +72,16 @@ HTML;
 function sendMail($mailBody) {
     $from = new SendGrid\Email(null, getenv("MAIL_FROM"));
     $subject = "LWのリリース予定状況の確認";
-    $to = new SendGrid\Email(null, getenv("MAIL_TO"));
     $content = new SendGrid\Content("text/html", $mailBody);
-    $mail = new SendGrid\Mail($from, $subject, $to, $content);
 
     $apiKey = getenv('SENDGRID_API_KEY');
     $sg = new \SendGrid($apiKey);
 
-    $response = $sg->client->mail()->send()->post($mail);
-
-    echo $response->statusCode();
-    echo $response->body();
+    $tos = explode(",", getenv("MAIL_TO"));
+    foreach ($tos as $to) {
+        $mailTo = new SendGrid\Email(null, $to);
+        $mail = new SendGrid\Mail($from, $subject, $mailTo, $content);
+        $response = $sg->client->mail()->send()->post($mail);
+        echo $response->statusCode();
+    }
 }
