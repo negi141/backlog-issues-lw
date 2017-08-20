@@ -83,18 +83,22 @@ function formatIssues($issues) {
 }
 
 function sendMail($mailBody) {
-    $from = new SendGrid\Email(null, getenv("MAIL_FROM"));
-    $subject = "backlog issues for lw";
-    $to = new SendGrid\Email(null, getenv("MAIL_TO"));
+ //   $from = new SendGrid\Email(null, getenv("MAIL_FROM"));
+    //$subject = "backlog issues for lw";
+/*    $to = new SendGrid\Email(null, getenv("MAIL_TO"));
     $content = new SendGrid\Content("text/plain", $mailBody);
     $mail = new SendGrid\Mail($from, $subject, $to, $content);
+*/
+$email->addTo(getenv("MAIL_TO"))
+      ->setFrom(getenv("MAIL_FROM"))
+      ->setSubject("backlog issues for lw")
+      ->setHtml($mailBody);
 
     $apiKey = getenv('SENDGRID_API_KEY');
     $sg = new \SendGrid($apiKey);
 
-    $response = $sg->client->mail()->send()->post($mail);
+    $response = $sg->send($email);
 
     echo $response->statusCode();
     echo $response->body();
-    echo $response->headers();
 }
