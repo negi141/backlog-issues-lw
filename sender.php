@@ -7,6 +7,8 @@ require_once "lib/backlog.php";
 mb_language("Japanese");
 mb_internal_encoding("UTF-8");
 
+echo getenv('MAIL_TO');
+try {
 $to      = getenv('MAIL_TO');
 $subject = 'タイトル';
 $message = '本文';
@@ -14,3 +16,6 @@ $headers = 'From: ' . 'tnegishi@pro-seeds.co.jp' . "\r\n";
 
 mb_send_mail($to, $subject, $message, $headers);
 
+} catch (\Exception $ex) {
+    Util::vardump($ex);
+}
