@@ -85,9 +85,10 @@ $header = <<<HTML
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
 </head>
 <body>
+このメールは<a href="https://backlog-issues-lw.herokuapp.com/" target="_blank">backlog Checker for LW</a>から
+自動で送られています。(一日一回)
 HTML;
 
 $footer = <<<HTML
