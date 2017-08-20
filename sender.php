@@ -1,11 +1,11 @@
 <?php
+require __DIR__ . '/vendor/autoload.php';
+
 require_once "lib/init.php";
 require_once "lib/util.php";
 require_once "lib/html.php";
 require_once "lib/backlog.php";
 require_once "lib/backlogCall.php";
-
-require __DIR__ . '/vendor/autoload.php';
 
 main();
 
