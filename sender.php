@@ -105,7 +105,7 @@ HTML;
 
 function sendMail($mailBody) {
     $from = new SendGrid\Email(null, getenv("MAIL_FROM"));
-    $subject = "backlog issues for lw";
+    $subject = "LWのリリース予定状況の確認";
     $to = new SendGrid\Email(null, getenv("MAIL_TO"));
     $content = new SendGrid\Content("text/html", $mailBody);
     $mail = new SendGrid\Mail($from, $subject, $to, $content);
