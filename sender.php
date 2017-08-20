@@ -46,27 +46,8 @@ function getIssues($apiKey, $span)
             }
         }
     }
-$header = <<<HTML
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
-</head>
-<body>
-HTML;
 
-$footer = <<<HTML
-    <hr>
-    <footer>
-        Created by Negishi. 
-        <a href="https://github.com/negi141/backlog-issues-lw" target="_blank">Repository</a>
-    </footer>
-    </body>
-</html>
-HTML;
-
-    return $header . $formattedIssues . $footer;
+    return $formattedIssues;
 }
 
 function formatIssues($issues) {
@@ -99,7 +80,26 @@ function formatIssues($issues) {
             }
         }
     }
-    return $html;
+$header = <<<HTML
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
+</head>
+<body>
+HTML;
+
+$footer = <<<HTML
+    <hr>
+    <footer>
+        Created by Negishi. 
+        <a href="https://github.com/negi141/backlog-issues-lw" target="_blank">Repository</a>
+    </footer>
+    </body>
+</html>
+HTML;
+    return $header . $html . $footer;
 }
 
 function sendMail($mailBody) {
