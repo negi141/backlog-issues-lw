@@ -1,21 +1,11 @@
 <?php
-require_once "lib/init.php";
-require_once "lib/util.php";
-require_once "lib/html.php";
-require_once "lib/backlog.php";
+require __DIR__ . '/vendor/autoload.php'; // path to vendor/
 
-mb_language("Japanese");
-mb_internal_encoding("UTF-8");
+$sendgrid = new SendGrid(getenv('SENDGRID_USERNAME'), getenv('SENDGRID_PASSWORD'));
+$email = new SendGrid\Email();
+$email->addTo(getenv("MAIL_TO"))->
+    setFrom(getenv("MAIL_FROM"))->
+    setSubject('件名')->
+    setText('こんにちは！');
 
-echo getenv('MAIL_TO');
-try {
-$to      = getenv('MAIL_TO');
-$subject = 'タイトル';
-$message = '本文';
-//$headers = 'From: ' . 'tnegishi@pro-seeds.co.jp' . "\r\n";
-
-mb_send_mail($to, $subject, $message/*, $headers*/);
-
-} catch (\Exception $ex) {
-    Util::vardump($ex);
-}
+$sendgrid->send($email);
