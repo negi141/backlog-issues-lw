@@ -46,7 +46,27 @@ function getIssues($apiKey, $span)
             }
         }
     }
-    return $formattedIssues;
+$header = <<<HTML
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
+</head>
+<body>
+HTML;
+
+$footer = <<<HTML
+    <hr>
+    <footer>
+        Created by Negishi. 
+        <a href="https://github.com/negi141/backlog-issues-lw" target="_blank">Repository</a>
+    </footer>
+    </body>
+</html>
+HTML;
+
+    return $header . $formattedIssues . $footer;
 }
 
 function formatIssues($issues) {
@@ -89,6 +109,7 @@ function sendMail($mailBody) {
     $content = new SendGrid\Content("text/plain", $mailBody);
     $mail = new SendGrid\Mail($from, $subject, $to, $content);
 */
+$email    = new SendGrid\Email();
 $email->addTo(getenv("MAIL_TO"))
       ->setFrom(getenv("MAIL_FROM"))
       ->setSubject("backlog issues for lw")
