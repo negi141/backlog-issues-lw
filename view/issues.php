@@ -13,6 +13,18 @@ foreach ($issues as $lwverKey => $lwver) {
         } else {
             $dateMessage = $interval->d . "日前";
         }
+        if ($now < $date) {
+            if ($lwver == "LW3") {
+                if ($interval->d == 15) $dateMessage .= "<br>★今日中にリリースノートを課題内に書いて下さい";
+                if ($interval->d == 14) $dateMessage .= "<br>★今日はリリース告知です";
+                if ($interval->d == 0) $dateMessage .= "<br>★今日はリリース日です";
+            } else {
+                if ($interval->d == 8) $dateMessage .= "<br>★今日中にリリースノートを課題内に書いて下さい";
+                if ($interval->d == 7) $dateMessage .= "<br>★今日はリリース告知です";
+                if ($interval->d == 0) $dateMessage .= "<br>★今日はリリース日です";
+            }
+        }
+
         $html .= Html::tag('h3', substr($daysKey, 0, 10) . "　" . $dateMessage);
         foreach ($days as $issue) {
             $url = sprintf(BacklogApi::WEB_URL, 'esk-sys', $issue['issueKey']);
