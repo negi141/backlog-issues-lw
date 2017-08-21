@@ -10,7 +10,7 @@ require_once "lib/backlogCall.php";
 main();
 
 function main() {
-    $span = (object)["start" => strtotime("-10 day"), "end" => strtotime("+20 day")];
+    $span = (object)["start" => strtotime("-1 day"), "end" => strtotime("+20 day")];
     $issues = backlogCall::getIssues(getenv("BACKLOG_API_KEY"), $span);
     $content = formatIssues($issues);
     sendMail($content);

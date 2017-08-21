@@ -11,7 +11,7 @@ require_once "lib/render.php";
 if (!isset($_POST['apiKey'])) {
     render("form");
 } else {
-    $span = (object)["start" => strtotime("-10 day"), "end" => strtotime("+20 day")];
+    $span = (object)["start" => strtotime("-10 day"), "end" => strtotime("+30 day")];
     $issues = backlogCall::getIssues($_POST['apiKey'], $span);
     render("issues", ["issues" => $issues, "span" => $span]);
 }
