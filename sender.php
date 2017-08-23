@@ -13,6 +13,7 @@ function main() {
     $span = (object)["start" => strtotime("-1 day"), "end" => strtotime("+20 day")];
     $issues = backlogCall::getIssues(getenv("BACKLOG_API_KEY"), $span);
     $content = formatIssues($issues);
+    $content = createBody($content, $span);
     sendMail($content);
 }
 
@@ -26,6 +27,7 @@ function formatIssues($issues) {
             $date = new DateTime($daysKey);
             $date->add(new DateInterval('P1D'));
             $now = new DateTime();
+            $now->setTimezone(new DateTimeZone('Asia/Tokyo'));
             $interval = $date->diff($now);
             if ($now < $date) {
                 $dateMessage = $interval->d . "日後";
@@ -57,7 +59,14 @@ function formatIssues($issues) {
             }
         }
     }
-$header = <<<HTML
+    return $html;
+}
+
+function createBody($content, $span) {
+    $d1 = date("Y-m-d", $span->start);
+    $d2 = date("Y-m-d", $span->end);
+
+    $header = <<<HTML
 <!doctype html>
 <html>
 <head>
@@ -66,9 +75,10 @@ $header = <<<HTML
 <body style="font-family: helvetica, arial, 'lucida grande', 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif;">
 このメールは<a href="https://backlog-issues-lw.herokuapp.com/" target="_blank">backlog Checker for LW</a>から
 自動で送られています。(一日一回)
+抽出期間：$d1 ～ $d2
 HTML;
 
-$footer = <<<HTML
+    $footer = <<<HTML
     <hr>
     <footer>
         Created by Negishi. 
@@ -77,7 +87,7 @@ $footer = <<<HTML
     </body>
 </html>
 HTML;
-    return $header . $html . $footer;
+    return $header . $content . $footer;
 }
 
 function sendMail($mailBody) {
