@@ -46,10 +46,14 @@ class BacklogControl
                 $now = new DateTime();
                 $now->setTimezone(new DateTimeZone('Asia/Tokyo'));
                 $interval = $date->diff($now);
-                if ($now < $date) {
-                    $dateMessage = $interval->days . "日後";
+                if ($interval->days == 0) {
+                    $dateMessage = "今日";
                 } else {
-                    $dateMessage = $interval->days . "日前";
+                    if ($now < $date) {
+                        $dateMessage = $interval->days . "日後";
+                    } else {
+                        $dateMessage = $interval->days . "日前";
+                    }
                 }
                 if ($now < $date) {
                     if ($lwver == "LW3") {
