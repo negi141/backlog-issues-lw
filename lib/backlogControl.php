@@ -56,7 +56,7 @@ class BacklogControl
                     }
                 }
                 if ($now < $date) {
-                    if ($lwver == "LW3") {
+                    if ($lwverKey == "LW3") {
                         if ($interval->days == 15) $dateMessage .= "<br>★今日中にリリースノートを課題内に書いて下さい";
                         if ($interval->days == 14) $dateMessage .= "<br>★今日はリリース告知です";
                         if ($interval->days == 0) $dateMessage .= "<br>★今日はリリース日です";
