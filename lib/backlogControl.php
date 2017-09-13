@@ -57,13 +57,13 @@ class BacklogControl
                 }
                 if ($now < $date) {
                     if ($lwver == "LW3") {
-                        if ($interval->d == 15) $dateMessage .= "<br>★今日中にリリースノートを課題内に書いて下さい";
-                        if ($interval->d == 14) $dateMessage .= "<br>★今日はリリース告知です";
-                        if ($interval->d == 0) $dateMessage .= "<br>★今日はリリース日です";
+                        if ($interval->days == 15) $dateMessage .= "<br>★今日中にリリースノートを課題内に書いて下さい";
+                        if ($interval->days == 14) $dateMessage .= "<br>★今日はリリース告知です";
+                        if ($interval->days == 0) $dateMessage .= "<br>★今日はリリース日です";
                     } else {
-                        if ($interval->d == 8) $dateMessage .= "<br>★今日中にリリースノートを課題内に書いて下さい";
-                        if ($interval->d == 7) $dateMessage .= "<br>★今日はリリース告知です";
-                        if ($interval->d == 0) $dateMessage .= "<br>★今日はリリース日です";
+                        if ($interval->days == 8) $dateMessage .= "<br>★今日中にリリースノートを課題内に書いて下さい";
+                        if ($interval->days == 7) $dateMessage .= "<br>★今日はリリース告知です";
+                        if ($interval->days == 0) $dateMessage .= "<br>★今日はリリース日です";
                     }
                 }
                 $html .= Html::tag('h3', substr($daysKey, 0, 10) . "　" . $dateMessage);
