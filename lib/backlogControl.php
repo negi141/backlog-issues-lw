@@ -1,4 +1,5 @@
 <?php
+
 class BacklogControl
 {
     public static function getIssues($apiKey, $span)
@@ -84,5 +85,17 @@ class BacklogControl
             }
         }
         return $html;
+    }
+
+    // 超暫定版
+    public static function getWebUrl($span) {
+        $d1enc = urlencode(date("Y/m/d", $span->start));
+        $d2enc = urlencode(date("Y/m/d", $span->end));
+        $cateIds = [181620, 213143, 197771, 216136, 222754, 220959, 229849];
+        $cate = "";
+        foreach($cateIds as $id) {
+            $cate .= "&condition.componentId=" . $id;
+        }
+        return "https://esk-sys.backlog.jp/find/LW3_SHUKAN?condition.projectId=73975&condition.issueTypeId={$cate}&condition.versionId=121542&condition.versionId=121543&condition.versionId=121544&condition.fixedVersionId=&condition.statusId=1&condition.statusId=2&condition.statusId=3&condition.priority=&condition.assignerId=&condition.createdUserId=&condition.resolutionId=&condition.file=&condition.parentChildIssue=&condition.limit=20&condition.offset=0&condition.query=&condition.sort=UPDATED&condition.order=false&condition.simpleSearch=false&condition.allOver=false&condition.createdRange.begin=&condition.createdRange.end=&condition.updatedRange.begin=&condition.updatedRange.end=&condition.startDateRange.begin=&condition.startDateRange.end=&condition.limitDateRange.begin={$d1enc}&condition.limitDateRange.end={$d2enc}";
     }
 }

@@ -1,10 +1,10 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
 
-require_once "lib/init.php";
+require_once "config/init.php";
 require_once "lib/util.php";
 require_once "lib/html.php";
-require_once "lib/backlog.php";
+require_once "lib/backlogApi.php";
 require_once "lib/backlogControl.php";
 
 main();
@@ -20,6 +20,7 @@ function main() {
 function createBody($content, $span) {
     $d1 = date("Y-m-d", $span->start);
     $d2 = date("Y-m-d", $span->end);
+    $url = BacklogControl::getWebUrl($span);
 
     $header = <<<HTML
 <!doctype html>
@@ -30,7 +31,8 @@ function createBody($content, $span) {
 <body style="font-family: helvetica, arial, 'lucida grande', 'hiragino kaku gothic pro', meiryo, 'ms pgothic', sans-serif;">
 このメールは<a href="https://backlog-issues-lw.herokuapp.com/" target="_blank">backlog Checker for LW</a>から
 自動で送られています。(一日一回)<br>
-抽出期間：$d1 ～ $d2
+抽出期間：$d1 ～ $d2<br>
+<a href="<?= $url ?>" target="_blank">backlogで検索</a>
 HTML;
 
     $footer = <<<HTML

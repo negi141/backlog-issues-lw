@@ -1,9 +1,9 @@
 <?php
 
-require_once "lib/init.php";
+require_once "config/init.php";
 require_once "lib/util.php";
 require_once "lib/html.php";
-require_once "lib/backlog.php";
+require_once "lib/backlogApi.php";
 require_once "lib/backlogControl.php";
 require_once "lib/render.php";
 
