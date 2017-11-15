@@ -9,8 +9,8 @@ class BacklogControl
             'dueDateUntil' => date("Y-m-d", $span->end),
             'count' => 100,
             'statusId' => [1, 2, 3],
-            'categoryId' => [213143, 197771],
-            'versionId' => [121542, 121543, 121544],
+            'categoryId' => [181620, 213143, 197771, 216136, 222754, 220959, 229849], // カテゴリー
+            'versionId' => [121542, 121543, 121544], // 発生バージョン
             'sort' => 'dueDate',
             'order' => 'asc',
         ];
@@ -40,6 +40,7 @@ class BacklogControl
         // Html生成
         foreach ($issues as $lwverKey => $lwver) {
             $html .= Html::tag('h2', $lwverKey, "border-bottom: 1px solid #cdf;");
+            if (empty($lwver)) $html .= Html::tag('div', 'ー');
             foreach ($lwver as $daysKey => $days) {
                 $date = new DateTime($daysKey);
                 $date->add(new DateInterval('P1D'));
