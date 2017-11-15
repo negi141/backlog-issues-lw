@@ -32,7 +32,7 @@ function createBody($content, $span) {
 このメールは<a href="https://backlog-issues-lw.herokuapp.com/" target="_blank">backlog Checker for LW</a>から
 自動で送られています。(一日一回)<br>
 抽出期間：$d1 ～ $d2<br>
-<a href="<?= $url ?>" target="_blank">backlogで検索</a>
+<a href="$url" target="_blank">backlogで検索</a>
 HTML;
 
     $footer = <<<HTML
