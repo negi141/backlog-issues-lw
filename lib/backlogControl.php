@@ -30,7 +30,7 @@ class BacklogControl
                     $formattedIssues[$verName] = [];
                 }
 
-                if ($issue['versionId'][0] == $verId) {
+                if ($issue['versions'][0] == $verId) {
                     $dueDate = $issue['dueDate'];
                 }
                 if (isset($dueDate)) {
