@@ -29,8 +29,8 @@ class BacklogControl
                 if (!isset($formattedIssues[$verName])) {
                     $formattedIssues[$verName] = [];
                 }
-var_dump($issue);
-                if ($issue['versions'][0] == $verId) {
+
+                if ($issue['versions'][0]["id"] == $verId) {
                     $dueDate = $issue['dueDate'];
                     if (isset($dueDate)) {
                         $formattedIssues[$verName][$dueDate][] = $issue;
