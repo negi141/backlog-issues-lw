@@ -16,7 +16,7 @@ class BacklogControl
             'order' => 'asc',
         ];
         $issues = $backlogApi->send("issues", $query);
-        $lwvers = ['LW1', 'LW2', 'LW3'];
+        $lwvers = ['LW1', 'LW2', 'LW3', 'P-movie'];
         $formattedIssues = [];
         foreach ($issues as $issue) {
             foreach ($lwvers as $lwver) {
