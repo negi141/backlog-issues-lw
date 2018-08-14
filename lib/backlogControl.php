@@ -25,7 +25,7 @@ class BacklogControl
                     $formattedIssues[$lwver] = [];
                 }
 
-                if (preg_match("/" . $lwver . "/", $issue['summary'])) {
+                if (preg_match("/" . strtolower($lwver) . "/", strtolower($issue['summary']))) {
                     $dueDate = $issue['dueDate'];
                     if (isset($dueDate)) {
                         $formattedIssues[$lwver][$dueDate][] = $issue;
